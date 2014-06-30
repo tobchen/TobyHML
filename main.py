@@ -1,5 +1,3 @@
-__author__ = 'Tobias Heukaeufer'
-
 from cmd import Cmd
 from hmltoby.parse import ParseException, parse
 from hmltoby.evaluate import evaluate
@@ -79,7 +77,7 @@ class HMLTobyPrompt(Cmd):
 
     def do_about(self, _):
         """About TobyHML."""
-        print('TobyHML by Tobias Heukäufer')
+        print('TobyHML by Tobias Heukaeufer')
         print('- Yes, he named the program after himself.')
 
     def is_input_valid(self, name):

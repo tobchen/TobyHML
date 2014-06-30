@@ -1,6 +1,3 @@
-__author__ = 'Tobias Heukaeufer'
-
-
 # TODO Maybe use NetworkX instead of own LTS
 def evaluate(start_token, lts):
     return generate_set(start_token, lts)

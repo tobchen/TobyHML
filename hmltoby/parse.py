@@ -1,5 +1,3 @@
-__author__ = 'Tobias Heukaeufer'
-
 from hmltoby.evaluate import Token
 
 

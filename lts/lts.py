@@ -1,6 +1,3 @@
-__author__ = 'Tobias Heukaeufer'
-
-
 class LTS:
 
     """An LTS (Labelled Transition System) class."""
