@@ -1,6 +1,6 @@
 class LTS:
 
-    """An LTS (Labeled Transition System) class."""
+    """A labeled transition system class."""
 
     def __init__(self):
         self.states = []
@@ -23,10 +23,23 @@ class LTS:
                 break
 
     def remove_state(self, state_name):
-        pass  # TODO implement
+        # First remove state from list of states
+        self.states = [state for state in self.states
+                       if state.name != state_name]
+        # Now remove state from other state's transitions
+        for state in self.states:
+            for transition in state.transitions:
+                state.remove_transition_to(transition.name, state_name)
 
-    def remove_transition(self, state_from, transition, state_to):
-        pass  # TODO implement
+    def remove_transition_to(self, state_from, transition, state_to):
+        for state in self.states:
+            if state.name == state_from:
+                state.remove_transition_to(transition, state_to)
+
+    def remove_transition_from(self, state_from, transition):
+        for state in self.states:
+            if state.name == state_from:
+                state.remove_transition_from(transition)
 
     def reset(self):
         self.states.clear()
@@ -53,6 +66,22 @@ class LTS:
                     break
             if not transition_found:
                 self.transitions.append(self.Transition(name, to_state))
+
+        def remove_transition_to(self, name, to_state):
+            # Remove state from transition
+            for transition in self.transitions:
+                if transition.name == name:
+                    transition.to_states = [state for state in
+                                            transition.to_states
+                                            if state != to_state]
+            # Now there could be an empty transition
+            # Remove it, if neccessary
+            self.transitions = [transition for transition in self.transitions
+                                if len(transition.to_states) > 0]
+
+        def remove_transition_from(self, name):
+            self.transitions = [transition for transition in self.transitions
+                                if transition.name != name]
 
         def __str__(self):
             result = self.name

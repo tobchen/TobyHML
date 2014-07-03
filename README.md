@@ -6,7 +6,7 @@ In TobyHML you're able to build up a labeled transition system (LTS) and input H
 
 For now TobyHML only knows the standard HML syntax (no recursion), that is (in BNF):<br>
 `F ::= true | false | (F and F) | (F or F) | <a>F | [a]F`<br>
-Where a is a transition's name.
+Where `a` is a transition's name.
 
 ## Instruction
 First you have to build up an LTS. You can do that by typing in multiple `add`-commands like this:

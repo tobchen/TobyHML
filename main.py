@@ -18,13 +18,21 @@ class HMLTobyPrompt(Cmd):
     def help_add(self):
         """Help-text for 'add'."""
         print('Adds a new state or transition.')
-        print('Use "add <state>" to add a state or "add <from_state>', end='')
+        print('Use "add <state>" to add a state or "add <from_state>', end=' ')
         print('<transition> <to_state>" to add a transition.')
+
+    def help_remove(self):
+        """Help-text for 'remove'."""
+        print('Removes a state or transition.')
+        print('Use "remove <state>" to remove a state or "remove', end=' ')
+        print('<from_state> <transition> <to_state>" to remove a', end=' ')
+        print('transition or "remove <state> <transition>" to remove', end=' ')
+        print('all transitions from a state named <transition>.')
 
     def help_evaluate(self):
         """Help-text for 'evaluate'."""
         print('Returns states that meet a given HML formula.')
-        print('HML-syntax used: F ::= true | false | (F and F) |', end='')
+        print('HML-syntax used: F ::= true | false | (F and F) |', end=' ')
         print('(F or F) | <a>F | [a]F')
         print('Examples: "evaluate <a><b>true", "evaluate (<a>true or <b>true)"')
 
@@ -43,13 +51,34 @@ class HMLTobyPrompt(Cmd):
                 lts.add_state(args[0])
                 print('Added ' + args[0])
             # Add transition (and possibly states)
-            elif len(args) >= 3:
+            elif len(args) == 3:
                 lts.add_transition(args[0], args[1], args[2])
                 print('Added ' + args[0] + ' -' + args[1] + '-> ' + args[2])
+            # To many or few parameters
+            else:
+                print('Invalid number of parameters, see "help add".')
         else:
             print('Invalid input!')
             print('Input must be alphanumeric', end='')
             print(', may not be true, false, or, and!')
+
+    def do_remove(self, line):
+        """Remove a state or transition."""
+        args = line.split()
+        # Remove state
+        if len(args) == 1:
+            lts.remove_state(args[0])
+            print('Removed ' + args[0])
+        # Remove transition
+        elif len(args) == 3:
+            lts.remove_transition_to(args[0], args[1], args[2])
+            print('Removed ' + args[0] + ' -' + args[1] + '-> ' + args[2])
+        elif len(args) == 2:
+            lts.remove_transition_from(args[0], args[1])
+            print('Removed ' + args[0] + ' -' + args[1] + '->')
+        # Too many or few parameters
+        else:
+            print('Invalid number of parameters, see "help remove".')
 
     def do_reset(self, _):
         """Reset current LTS. Removes all states and transitions."""
