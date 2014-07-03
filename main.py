@@ -80,7 +80,7 @@ class HMLTobyPrompt(Cmd):
         print('TobyHML by Tobias Heukaeufer')
         print('- Yes, he named the program after himself.')
 
-    def is_input_valid(self, name):
+    def is_input_valid(name):
         """Check if an input is alphanumeric, not true, false, and, or."""
         lowered = name.lower()
         return lowered.isalnum() and lowered != 'true' and lowered != 'false'\
