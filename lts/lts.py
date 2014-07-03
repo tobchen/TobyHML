@@ -1,6 +1,6 @@
 class LTS:
 
-    """An LTS (Labelled Transition System) class."""
+    """An LTS (Labeled Transition System) class."""
 
     def __init__(self):
         self.states = []

@@ -7,6 +7,7 @@ from lts.lts import LTS
 lts = LTS()
 
 
+# TODO Read strings from file
 class HMLTobyPrompt(Cmd):
 
     """Commandline interface for TobyHML."""
@@ -23,7 +24,7 @@ class HMLTobyPrompt(Cmd):
     def help_evaluate(self):
         """Help-text for 'evaluate'."""
         print('Returns states that meet a given HML formula.')
-        print('HML-syntax used: F := true | false | (F and F) |', end='')
+        print('HML-syntax used: F ::= true | false | (F and F) |', end='')
         print('(F or F) | <a>F | [a]F')
         print('Examples: "evaluate <a><b>true", "evaluate (<a>true or <b>true)"')
 
