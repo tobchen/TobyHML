@@ -9,13 +9,16 @@ For now TobyHML only knows the standard HML syntax (no recursion), that is (in B
 Where `a` is a transition's name.
 
 ## Instruction
-First you have to build up an LTS. You can do that by typing in multiple `add`-commands like this:
+First you have to build up an LTS. You can do that by typing in multiple `add`- or `remove`-commands like this:
 - `add p1 a p2`, which creates two states `p1` and `p2` and connects them from `p1` to `p2` via `a`.
 - `add p3`, which creates a state `p3` that has no outgoing or incoming transitions (yet).
 - `add p1 b p4`, which creates `p4` and connects it from `p1` to `p4`via `b`.
 - `add true`, which would cause an error - your state and transition names *must* be alphanumeric and *may not* be `true`, `false`, `and` or `or`.
+- `remove p1 a p2`, which removes transition `a` from `p1` to `p2`.
+- `remove p1 a`, which removes all outgoing `a` transitions from a.
+- `remove p1`, which removes state `p1`.
 
-Use `print` to get an LTS print on screen. You can remove all states and transitions by entering `reset` (removal of specific states and transitions are yet to be added to TobyHML).
+Use `print` to get an LTS print on screen. You can remove all states and transitions by entering `reset`.
 
 Then you can check HML formulas which will give you a set of states that fulfill said formulas. Here are some examples:
 - `evaluate true`, which returns every state in the LTS.
@@ -30,6 +33,5 @@ Finally enter `exit` to quit TobyHML.
 TobyHML also has a `help` command to give you a quick reference.
 
 ## To Do
-- Remove states/transitions from LTS
 - Read LTS from file
 - Possibly add recursion
